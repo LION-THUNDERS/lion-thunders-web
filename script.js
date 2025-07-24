@@ -1,45 +1,58 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Lógica del Preloader ---
     const preloader = document.getElementById('preloader');
     const content = document.querySelector('.content');
+    const minDisplayTime = 1000; // Mínimo tiempo de visualización del preloader en milisegundos (1 segundo)
+    const maxLoadingTime = 3000; // Tiempo máximo que el preloader estará visible (3 segundos)
+
+    let pageLoaded = false;
+    let preloaderHidden = false;
 
     // Función para ocultar el preloader y mostrar el contenido
     function hidePreloader() {
+        if (preloaderHidden) return; // Evita que se ejecute múltiples veces
+
         if (preloader && content) {
-            preloader.style.display = 'none'; // Oculta el preloader
-            content.style.display = 'block';   // Muestra el contenido principal
+            preloader.style.opacity = '0'; // Inicia la transición de desvanecimiento
+            preloader.style.transition = 'opacity 0.5s ease-out'; // Transición suave
+
+            setTimeout(() => {
+                preloader.style.display = 'none'; // Finalmente oculta el preloader
+                content.style.display = 'block';   // Muestra el contenido principal
+                preloaderHidden = true;
+            }, 500); // Espera a que la transición de opacidad termine (0.5s)
         }
     }
 
-    // Espera a que la ventana (incluyendo todos los recursos como imágenes, etc.) cargue completamente
-    // Antes de ocultar el preloader.
-    window.addEventListener('load', hidePreloader);
+    // Listener para cuando toda la ventana (incluyendo recursos) haya cargado
+    window.addEventListener('load', () => {
+        pageLoaded = true;
+        // Si el tiempo mínimo ya pasó, oculta el preloader inmediatamente
+        // Si no, la función hidePreloader() ya será llamada por el setTimeout
+        // Aquí no hacemos nada directamente, setTimeout lo manejará
+    });
 
-    // --- Lógica del Menú Hamburguesa ---
+    // Establece un temporizador para ocultar el preloader después de un tiempo máximo
+    setTimeout(() => {
+        // Asegúrate de que el preloader se oculte, incluso si la página no ha terminado de cargar
+        hidePreloader();
+    }, maxLoadingTime);
+
+
+    // --- Lógica del Menú Hamburguesa (sin cambios, solo para referencia del contexto completo) ---
     const hamburgerMenu = document.querySelector('.hamburger-menu');
     const navLinks = document.querySelector('.nav-links');
 
-    // Verifica que ambos elementos (hamburguesa y enlaces de navegación) existan
     if (hamburgerMenu && navLinks) {
-        // Añade un "event listener" al botón hamburguesa para detectar clics
         hamburgerMenu.addEventListener('click', () => {
-            // Alterna la clase 'open' en la lista de enlaces de navegación
-            // Si la tiene, la quita (oculta el menú). Si no la tiene, la añade (muestra el menú).
             navLinks.classList.toggle('open');
-            // Opcional: Alterna la clase 'open' en el propio botón hamburguesa
-            // Esto se puede usar para animar el icono (por ejemplo, convertirlo en una 'X')
             hamburgerMenu.classList.toggle('open');
         });
 
-        // Opcional: Cerrar el menú si se hace clic en un enlace (para mejorar la UX en móviles)
-        // Selecciona todos los enlaces dentro del menú de navegación
         const allNavLinks = document.querySelectorAll('.nav-links a');
         allNavLinks.forEach(link => {
             link.addEventListener('click', () => {
-                // Si el menú está abierto, ciérralo
                 if (navLinks.classList.contains('open')) {
                     navLinks.classList.remove('open');
-                    // También quita la clase 'open' del botón hamburguesa si la tiene
                     if (hamburgerMenu.classList.contains('open')) {
                         hamburgerMenu.classList.remove('open');
                     }

@@ -333,6 +333,97 @@ footer {
 }
 
 /* ========================================================== */
+/* ESTILOS PARA EL PRELOADER                                 */
+/* ========================================================== */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #222; /* Un fondo oscuro como tu header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    flex-direction: column; /* Para alinear logo, texto y círculo verticalmente */
+}
+
+.preloader-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Espacio entre logo/texto y el círculo */
+}
+
+.preloader-logo .logo-icon {
+    height: 40px; /* Un poco más grande que en el header */
+    margin-right: 15px;
+    /* Las animaciones lightningEffectImage y lightningEffectText están activas aquí también */
+    animation: lightningEffectImage 2s infinite alternate;
+}
+
+.preloader-logo h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: #00FFFF;
+    font-family: "Arial Black", Gadget, sans-serif;
+    /* Las animaciones lightningEffectImage y lightningEffectText están activas aquí también */
+    animation: lightningEffectText 2s infinite alternate;
+}
+
+.preloader-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 4px solid #00FFFF;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+    position: relative; /* Para poder posicionar el efecto eléctrico */
+}
+
+/* Efecto "eléctrico" con pseudo-elementos */
+.preloader-circle::before,
+.preloader-circle::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.preloader-circle::before {
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 3px solid #00FFFF;
+    border-left-color: transparent;
+    animation: pulse 1.5s linear infinite;
+}
+
+.preloader-circle::after {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 2px solid #00FFFF;
+    border-right-color: transparent;
+    animation: pulse 2s linear infinite reverse;
+}
+
+/* Animación de rotación del círculo principal */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Animación de pulsación para el efecto eléctrico */
+@keyframes pulse {
+    0%, 100% { opacity: 0; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+
+/* ========================================================== */
 /* MEDIA QUERIES PARA RESPONSIVE DESIGN                     */
 /* ========================================================== */
 

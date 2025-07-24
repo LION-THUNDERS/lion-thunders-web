@@ -1,5 +1,5 @@
 html {
-    scroll-behavior: smooth; /* <-- Para el scroll suave en toda la página */
+    scroll-behavior: smooth; /* Para el scroll suave en toda la página */
 }
 
 /* Estilos generales */
@@ -10,7 +10,7 @@ body {
     color: #333;
     min-height: 100vh; /* Asegura que el body ocupe al menos el 100% de la altura de la ventana */
 
-    background-image: url('images/fondo1.jpg'); /* <-- Tu imagen de fondo */
+    background-image: url('images/fondo1.jpg'); /* Tu imagen de fondo */
     background-size: cover;
     background-attachment: fixed;
     background-position: center center;
@@ -95,13 +95,12 @@ header .container {
 header .logo {
     display: flex; /* Para alinear imagen y texto horizontalmente */
     align-items: center; /* Para alinear verticalmente en el centro */
-    /* No es necesario poner aquí las propiedades de animación o color, se hace en los elementos hijos */
 }
 
 header .logo .logo-icon {
     height: 30px; /* Ajusta el tamaño del logo como desees */
     margin-right: 10px; /* Espacio entre el logo y el texto */
-    animation: lightningEffectImage 2s infinite alternate; /* <-- APLICAMOS ANIMACIÓN SÓLO A LA IMAGEN */
+    animation: lightningEffectImage 2s infinite alternate;
 }
 
 header .logo h1 {
@@ -109,7 +108,7 @@ header .logo h1 {
     font-size: 2em;
     color: #00FFFF;
     font-family: "Arial Black", Gadget, sans-serif;
-    animation: lightningEffectText 2s infinite alternate; /* <-- APLICAMOS ANIMACIÓN SÓLO AL TEXTO */
+    animation: lightningEffectText 2s infinite alternate;
 }
 
 header nav ul {
@@ -279,27 +278,129 @@ footer {
     }
 }
 
-/* Media Queries para Responsive Design (opcional, pero buena práctica) */
+/* ========================================================== */
+/* MEDIA QUERIES PARA RESPONSIVE DESIGN             */
+/* ========================================================== */
+
+/* Para pantallas más pequeñas (smartphones, hasta 768px) */
 @media (max-width: 768px) {
+    /* Header: Cambiar a columna en pantallas pequeñas */
     header .container {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: column; /* Apila el logo y la navegación verticalmente */
+        align-items: center; /* Centra los elementos */
     }
 
     header nav ul {
-        margin-top: 10px;
+        flex-direction: column; /* Apila los elementos del menú verticalmente */
+        width: 100%; /* Ocupa todo el ancho disponible */
+        text-align: center; /* Centra el texto de los enlaces */
+        margin-top: 10px; /* Espacio entre el logo/título y el menú */
     }
 
+    header nav ul li {
+        margin: 5px 0; /* Espacio entre los elementos del menú */
+    }
+
+    header nav ul li a {
+        padding: 8px 10px; /* Reducir padding de enlaces */
+        font-size: 0.9em; /* Reducir tamaño de fuente de enlaces */
+    }
+
+    header .logo h1 {
+        font-size: 1.5em; /* Reducir tamaño de fuente del título LION THUNDERS */
+    }
+
+    header .logo .logo-icon {
+        height: 25px; /* Reducir tamaño del icono del logo */
+    }
+
+    /* Hero Section: Ajustes de padding y tamaño de fuente */
     .hero {
-        padding: 100px 0; /* Ajusta el padding para móviles */
-        padding-top: 150px; /* Ajusta también el padding superior en móviles */
+        padding: 100px 20px; /* Reducir padding general en móviles */
+        padding-top: 150px; /* Asegurar que el contenido no quede debajo del header fijo */
     }
 
-    .services-grid, .gallery-grid {
-        grid-template-columns: 1fr; /* Una columna para móviles */
+    .hero h1 {
+        font-size: 2.2em; /* Reducir tamaño del título principal */
+    }
+
+    .hero p {
+        font-size: 1em; /* Reducir tamaño del párrafo principal */
+        padding: 0 10px; /* Añadir padding horizontal para evitar que el texto toque los bordes */
+    }
+
+    /* Secciones generales: padding */
+    .section {
+        padding: 40px 0; /* Reducir padding de las secciones */
     }
 
     .section h2 {
-        font-size: 2em;
+        font-size: 2em; /* Reducir tamaño de los títulos de sección */
+        padding: 0 10px; /* Evitar que el título toque los bordes */
+    }
+
+    /* Contenedor blanco (bg-light): Ajustar margen y padding */
+    .bg-light {
+        padding: 20px; /* Reducir padding interno */
+        margin: 10px; /* Reducir margen exterior */
+    }
+
+    .bg-light p {
+        font-size: 0.9em; /* Reducir tamaño de fuente del texto en el fondo blanco */
+    }
+
+    /* Servicios Grid: Una columna para móviles */
+    .services-grid {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+        gap: 20px; /* Reducir el espacio entre las tarjetas */
+    }
+
+    /* Galería Grid: Una columna para móviles */
+    .gallery-grid {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+        gap: 15px; /* Reducir el espacio entre las imágenes */
+    }
+
+    /* Footer: Ajustes de padding */
+    footer {
+        padding: 15px 0; /* Reducir padding del footer */
+        font-size: 0.8em; /* Reducir tamaño de fuente del footer */
+    }
+}
+
+/* Para tablets y pantallas medianas (entre 769px y 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        padding: 0 30px; /* Aumentar ligeramente el padding lateral */
+    }
+
+    header .logo h1 {
+        font-size: 1.8em; /* Ajuste para tablets */
+    }
+
+    header nav ul li a {
+        padding: 10px 12px; /* Ajuste de padding para enlaces */
+    }
+
+    .hero h1 {
+        font-size: 2.5em; /* Ajuste para tablets */
+    }
+
+    .hero p {
+        font-size: 1.1em; /* Ajuste para tablets */
+    }
+
+    .section h2 {
+        font-size: 2.2em; /* Ajuste de títulos de sección */
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Mantener 2 columnas o más si el tamaño lo permite */
+        gap: 25px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Mantener 2-3 columnas o más */
+        gap: 18px;
     }
 }

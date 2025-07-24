@@ -347,6 +347,8 @@ footer {
     align-items: center;
     z-index: 1000; /* Asegura que esté por encima de todo */
     flex-direction: column; /* Para alinear logo, texto y círculo verticalmente */
+    opacity: 1; /* Asegura que sea visible al principio */
+    transition: opacity 0.5s ease-out; /* Transición para desvanecerse */
 }
 
 .preloader-logo {
@@ -358,8 +360,7 @@ footer {
 .preloader-logo .logo-icon {
     height: 40px; /* Un poco más grande que en el header */
     margin-right: 15px;
-    /* Las animaciones lightningEffectImage y lightningEffectText están activas aquí también */
-    animation: lightningEffectImage 2s infinite alternate;
+    animation: lightningEffectImage 2s infinite alternate; /* Mantiene la animación del logo */
 }
 
 .preloader-logo h1 {
@@ -367,8 +368,7 @@ footer {
     font-size: 2.5em;
     color: #00FFFF;
     font-family: "Arial Black", Gadget, sans-serif;
-    /* Las animaciones lightningEffectImage y lightningEffectText están activas aquí también */
-    animation: lightningEffectText 2s infinite alternate;
+    animation: lightningEffectText 2s infinite alternate; /* Mantiene la animación del texto */
 }
 
 .preloader-circle {

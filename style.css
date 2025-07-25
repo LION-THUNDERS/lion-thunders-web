@@ -113,13 +113,42 @@ header .logo h1 {
     animation: lightningEffectText 2s infinite alternate; /* Mantiene la animación original */
 }
 
-/* Estilos para la nueva imagen SVG del eslogan */
-header .logo .slogan-image {
-    height: 35px; /* Ajusta la altura del SVG del eslogan. Puedes probar con otros valores. */
-    width: auto; /* Mantiene la proporción */
-    margin-left: 5px; /* Pequeño espacio extra si lo necesitas */
+/* Estilos para el eslogan simple con efecto eléctrico y centrado */
+header .logo .slogan {
+    color: #fff; /* Color base del texto */
+    font-size: 1.1em; /* Un poco más grande para que se vea bien */
+    font-family: 'Electrify', sans-serif; /* Intenta usar una fuente que parezca eléctrica. Si no la tienes instalada, usará sans-serif */
+    margin: 0; /* Reiniciar márgenes */
+    white-space: nowrap; /* Evita que el eslogan salte de línea en PC */
+    text-align: center; /* Asegura que el texto esté centrado si el flexbox lo permite */
+    text-shadow:
+        0 0 5px #00FFFF,   /* Brillo interior */
+        0 0 10px #00FFFF,  /* Brillo medio */
+        0 0 15px #00FFFF,  /* Brillo exterior */
+        0 0 20px #00FFFF;  /* Halo más amplio */
+    animation: simpleElectricPulse 2s infinite alternate; /* Animación de pulsación sutil */
+    line-height: 1.2; /* Ajuste para la altura de línea si es necesario */
 }
 
+/* ANIMACIÓN: Pulsación eléctrica sutil para el eslogan */
+@keyframes simpleElectricPulse {
+    0%, 100% {
+        text-shadow:
+            0 0 5px #00FFFF,
+            0 0 10px #00FFFF,
+            0 0 15px #00FFFF,
+            0 0 20px #00FFFF;
+        opacity: 1;
+    }
+    50% {
+        text-shadow:
+            0 0 3px #00FFFF,
+            0 0 7px #00FFFF,
+            0 0 12px #00FFFF,
+            0 0 17px #00FFFF;
+        opacity: 0.95; /* Ligeramente menos opaco para el efecto de parpadeo */
+    }
+}
 
 /* ========================================================== */
 /* ESTILOS PARA LA NAVEGACIÓN (PC Y MOBILE)                */
@@ -366,9 +395,6 @@ footer {
     }
 }
 
-/* La animación 'subtleLightningEffect' ya NO es necesaria en CSS,
-   ya que el efecto de animación se gestiona dentro del propio SVG. */
-
 
 /* ========================================================== */
 /* ESTILOS PARA EL PRELOADER                                 */
@@ -490,8 +516,9 @@ footer {
         white-space: normal; /* Permitir salto de línea si es necesario en móvil */
     }
 
-    header .logo .slogan-image {
-        height: 25px; /* Ajustar el tamaño del SVG del eslogan en móvil */
+    header .logo .slogan {
+        font-size: 0.9em; /* Ajustar el tamaño del eslogan en móvil */
+        white-space: normal; /* Permitir salto de línea si es necesario en móvil */
     }
 
     header .logo .logo-icon {
@@ -573,8 +600,8 @@ footer {
         font-size: 1.8em; /* Ajuste para tablets */
     }
 
-    header .logo .slogan-image {
-        height: 30px; /* Ajuste de eslogan para tablets */
+    header .logo .slogan {
+        font-size: 1em; /* Ajuste de eslogan para tablets */
     }
 
     header nav ul li a {

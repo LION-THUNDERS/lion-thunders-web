@@ -95,12 +95,13 @@ header .container {
 header .logo {
     display: flex; /* Para alinear imagen y texto horizontalmente */
     align-items: center; /* Para alinear verticalmente en el centro */
+    flex-wrap: nowrap; /* Evita que los elementos del logo salten de línea por defecto */
+    gap: 10px; /* Espacio entre el logo, el título y el eslogan */
 }
 
 header .logo .logo-icon {
     height: 30px; /* Ajusta el tamaño del logo como desees */
-    margin-right: 10px; /* Espacio entre el logo y el texto */
-    animation: lightningEffectImage 2s infinite alternate;
+    animation: lightningEffectImage 2s infinite alternate; /* Mantiene la animación original */
 }
 
 header .logo h1 {
@@ -108,25 +109,36 @@ header .logo h1 {
     font-size: 2em;
     color: #00FFFF;
     font-family: "Arial Black", Gadget, sans-serif;
-    animation: lightningEffectText 2s infinite alternate;
-    white-space: nowrap; /* AHORA: Evita que el texto LION THUNDERS salte de línea */
+    white-space: nowrap; /* Evita que el texto LION THUNDERS salte de línea */
+    animation: lightningEffectText 2s infinite alternate; /* Mantiene la animación original */
 }
+
+/* Estilos para el nuevo eslogan */
+header .logo .slogan {
+    color: #fff; /* Color blanco para el eslogan */
+    font-size: 0.9em; /* Tamaño un poco más pequeño que el título */
+    margin: 0; /* Reiniciar márgenes */
+    white-space: nowrap; /* Evita que el eslogan salte de línea */
+    animation: subtleLightningEffect 3s infinite alternate; /* ¡SOLO EL SLOGAN CON ESTA ANIMACIÓN! */
+    line-height: 1.2; /* Ajuste para la altura de línea si es necesario */
+}
+
 
 /* ========================================================== */
 /* ESTILOS PARA LA NAVEGACIÓN (PC Y MOBILE)                */
 /* ========================================================== */
 
 .main-nav {
-    width: auto; /* Ajustado para que el logo y el nav coexistan mejor en la misma fila */
+    width: auto;
     display: flex;
-    justify-content: flex-end; /* Alinea los elementos a la derecha */
+    justify-content: flex-end;
     align-items: center;
-    flex-grow: 1; /* Permite que el main-nav ocupe el espacio restante */
+    flex-grow: 1;
 }
 
 /* ESTILOS PARA EL MENÚ HAMBURGUESA - SIEMPRE VISIBLE */
 .hamburger-menu {
-    display: flex; /* CAMBIO: Ahora siempre visible */
+    display: flex; /* Ahora siempre visible */
     flex-direction: column;
     justify-content: space-between;
     width: 30px;
@@ -160,8 +172,8 @@ header .logo h1 {
 
 /* ESTILOS PARA LOS ENLACES DE NAVEGACIÓN (SIEMPRE OCULTOS POR DEFECTO Y MANEJADOS POR JS) */
 .nav-links {
-    display: none; /* CAMBIO: Siempre oculto por CSS, JS lo mostrará/ocultará */
-    flex-direction: column; /* Apilar los enlaces verticalmente */
+    display: none; /* Siempre oculto por CSS, JS lo mostrará/ocultará */
+    flex-direction: column;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -304,6 +316,7 @@ footer {
 /* --- Animaciones --- */
 
 /* Animación de Corriente para el texto del título principal (menos intenso) */
+/* Se mantiene para el H1 de LION THUNDERS */
 @keyframes lightningEffectText {
     0%, 100% {
         text-shadow: 0 0 2px #00FFFF, 0 0 5px #00FFFF, 0 0 8px #00FFFF; /* Valores reducidos */
@@ -324,6 +337,7 @@ footer {
 }
 
 /* Animación de Corriente para el logo (imagen) (menos intenso) */
+/* Se mantiene para el logo */
 @keyframes lightningEffectImage {
     0%, 100% {
         filter: drop-shadow(0 0 2px #00FFFF) drop-shadow(0 0 5px #00FFFF) drop-shadow(0 0 8px #00FFFF); /* Valores reducidos */
@@ -354,6 +368,27 @@ footer {
         opacity: 0.9;
     }
 }
+
+/* NUEVA ANIMACIÓN: Efecto de onda eléctrica más lento y sutil para el eslogan */
+@keyframes subtleLightningEffect {
+    0%, 100% {
+        text-shadow: 0 0 1px #00FFFF, 0 0 2px #00FFFF; /* Sombra más sutil */
+        opacity: 1;
+    }
+    25% {
+        text-shadow: 0 0 2px #00FFFF, 0 0 4px #00FFFF; /* Un poco más de brillo */
+        opacity: 0.98;
+    }
+    50% {
+        text-shadow: 0 0 1px #00FFFF; /* Menos brillo */
+        opacity: 0.95;
+    }
+    75% {
+        text-shadow: 0 0 2px #00FFFF, 0 0 3px #00FFFF; /* Recupera un poco de brillo */
+        opacity: 0.98;
+    }
+}
+
 
 /* ========================================================== */
 /* ESTILOS PARA EL PRELOADER                                 */
@@ -463,13 +498,26 @@ footer {
         padding: 10px 20px;
     }
 
+    header .logo {
+        flex-wrap: wrap; /* Permitir que los elementos del logo salten de línea si es necesario en móvil */
+        justify-content: center; /* Centrar el logo y el slogan en móvil si saltan de línea */
+        text-align: center; /* Asegurar que el texto esté centrado si hay wrap */
+        gap: 5px; /* Reducir el espacio entre elementos del logo en móvil */
+    }
+
     header .logo h1 {
         font-size: 1.5em; /* Reducir tamaño de fuente del título LION THUNDERS */
         white-space: normal; /* Permitir salto de línea si es necesario en móvil */
     }
 
+    header .logo .slogan {
+        font-size: 0.8em; /* Ajustar tamaño de eslogan en móvil */
+        white-space: normal; /* Permitir salto de línea si es necesario en móvil */
+    }
+
     header .logo .logo-icon {
         height: 25px; /* Reducir tamaño del icono del logo */
+        margin-right: 0; /* Quitar margen extra si hay wrap */
     }
 
     /* Navegación: Ajustes para menú hamburguesa en móviles (no cambian mucho ya que ahora siempre está activo) */
@@ -544,6 +592,10 @@ footer {
 
     header .logo h1 {
         font-size: 1.8em; /* Ajuste para tablets */
+    }
+
+    header .logo .slogan {
+        font-size: 0.85em; /* Ajuste de eslogan para tablets */
     }
 
     header nav ul li a {

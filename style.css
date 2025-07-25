@@ -1,3 +1,31 @@
+/* ========================================================== */
+/* IMPORTACIÓN DE FUENTES (PON ESTO AL PRINCIPIO DEL ARCHIVO) */
+/* ========================================================== */
+@font-face {
+    font-family: 'Electrify'; /* Nombre que usaremos para referenciar la fuente */
+    src: url('fonts/Electrify.ttf') format('truetype'); /* Ajusta la ruta y el formato si tu archivo es diferente */
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Permite que el texto sea visible mientras la fuente se carga */
+}
+
+/* Si tu fuente es WOFF/WOFF2 (preferible), se vería así: */
+/*
+@font-face {
+    font-family: 'Electrify';
+    src: url('fonts/Electrify.woff2') format('woff2'),
+         url('fonts/Electrify.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+*/
+
+
+/* ========================================================== */
+/* ESTILOS GENERALES Y LAYOUT (TODO LO DEMÁS)               */
+/* ========================================================== */
+
 html {
     scroll-behavior: smooth; /* Para el scroll suave en toda la página */
 }
@@ -88,15 +116,16 @@ header {
 
 header .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Espacia los elementos: logo a la izq, nav a la der */
     align-items: center;
 }
 
 header .logo {
-    display: flex; /* Para alinear imagen y texto horizontalmente */
+    display: flex; /* Para alinear imagen, H1 y slogan horizontalmente */
     align-items: center; /* Para alinear verticalmente en el centro */
-    flex-wrap: nowrap; /* Evita que los elementos del logo salten de línea por defecto */
+    flex-wrap: nowrap; /* Evita que los elementos del logo salten de línea por defecto en PC */
     gap: 10px; /* Espacio entre el logo, el título y el eslogan */
+    flex-grow: 1; /* Permite que este contenedor crezca y ocupe el espacio disponible */
 }
 
 header .logo .logo-icon {
@@ -113,14 +142,13 @@ header .logo h1 {
     animation: lightningEffectText 2s infinite alternate; /* Mantiene la animación original */
 }
 
-/* Estilos para el eslogan simple con efecto eléctrico y centrado */
+/* Estilos para el eslogan - APLICADO AHORA A TRAVÉS DE MEDIA QUERY PARA PC */
 header .logo .slogan {
     color: #fff; /* Color base del texto */
-    font-size: 1.1em; /* Un poco más grande para que se vea bien */
-    font-family: 'Electrify', sans-serif; /* Intenta usar una fuente que parezca eléctrica. Si no la tienes instalada, usará sans-serif */
+    font-size: 1.5em; /* Tamaño más grande para PC */
+    font-family: 'Electrify', sans-serif; /* Usamos la nueva fuente, fallback a sans-serif */
     margin: 0; /* Reiniciar márgenes */
     white-space: nowrap; /* Evita que el eslogan salte de línea en PC */
-    text-align: center; /* Asegura que el texto esté centrado si el flexbox lo permite */
     text-shadow:
         0 0 5px #00FFFF,   /* Brillo interior */
         0 0 10px #00FFFF,  /* Brillo medio */
@@ -128,26 +156,8 @@ header .logo .slogan {
         0 0 20px #00FFFF;  /* Halo más amplio */
     animation: simpleElectricPulse 2s infinite alternate; /* Animación de pulsación sutil */
     line-height: 1.2; /* Ajuste para la altura de línea si es necesario */
-}
-
-/* ANIMACIÓN: Pulsación eléctrica sutil para el eslogan */
-@keyframes simpleElectricPulse {
-    0%, 100% {
-        text-shadow:
-            0 0 5px #00FFFF,
-            0 0 10px #00FFFF,
-            0 0 15px #00FFFF,
-            0 0 20px #00FFFF;
-        opacity: 1;
-    }
-    50% {
-        text-shadow:
-            0 0 3px #00FFFF,
-            0 0 7px #00FFFF,
-            0 0 12px #00FFFF,
-            0 0 17px #00FFFF;
-        opacity: 0.95; /* Ligeramente menos opaco para el efecto de parpadeo */
-    }
+    flex-grow: 1; /* Permite que el slogan ocupe el espacio para centrarse */
+    text-align: center; /* Centra el texto del slogan dentro de su espacio */
 }
 
 /* ========================================================== */
@@ -157,9 +167,9 @@ header .logo .slogan {
 .main-nav {
     width: auto;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-end; /* Alinea el menú hamburguesa a la derecha */
     align-items: center;
-    flex-grow: 1;
+    /* flex-grow: 1;  Quitamos esto de aquí para que .logo tenga más espacio para centrar */
 }
 
 /* ESTILOS PARA EL MENÚ HAMBURGUESA - SIEMPRE VISIBLE */
@@ -395,6 +405,26 @@ footer {
     }
 }
 
+/* ANIMACIÓN: Pulsación eléctrica sutil para el eslogan (repetido aquí para claridad, ya está arriba también) */
+@keyframes simpleElectricPulse {
+    0%, 100% {
+        text-shadow:
+            0 0 5px #00FFFF,
+            0 0 10px #00FFFF,
+            0 0 15px #00FFFF,
+            0 0 20px #00FFFF;
+        opacity: 1;
+    }
+    50% {
+        text-shadow:
+            0 0 3px #00FFFF,
+            0 0 7px #00FFFF,
+            0 0 12px #00FFFF,
+            0 0 17px #00FFFF;
+        opacity: 0.95; /* Ligeramente menos opaco para el efecto de parpadeo */
+    }
+}
+
 
 /* ========================================================== */
 /* ESTILOS PARA EL PRELOADER                                 */
@@ -494,6 +524,20 @@ footer {
 /* Nota: Los estilos por defecto ya están configurados para la versión PC con menú hamburguesa.
    Las Media Queries se usarán para ajustes específicos en pantallas más pequeñas. */
 
+/* Para pantallas más grandes (PC, desde 769px) */
+@media (min-width: 769px) {
+    header .logo .slogan {
+        /* Ya configurado arriba, pero aquí aseguramos que se aplica */
+        font-size: 1.5em; /* Tamaño grande para PC */
+    }
+
+    /* Ajuste para centrar el slogan en PC:
+       Como .logo tiene `flex-grow: 1`, el espacio restante se distribuye.
+       Si el `h1` y el `img` no crecen, el `span.slogan` tomará el espacio central.
+       `text-align: center` dentro del slogan lo centrará en ese espacio. */
+}
+
+
 /* Para pantallas más pequeñas (smartphones, hasta 768px) */
 @media (max-width: 768px) {
     /* Header: Ajustes para móviles */
@@ -509,6 +553,7 @@ footer {
         justify-content: center; /* Centrar el logo y el slogan en móvil si saltan de línea */
         text-align: center; /* Asegurar que el texto esté centrado si hay wrap */
         gap: 5px; /* Reducir el espacio entre elementos del logo en móvil */
+        flex-grow: 0; /* No permitir que crezca tanto en móvil para no desbordar */
     }
 
     header .logo h1 {
@@ -519,6 +564,13 @@ footer {
     header .logo .slogan {
         font-size: 0.9em; /* Ajustar el tamaño del eslogan en móvil */
         white-space: normal; /* Permitir salto de línea si es necesario en móvil */
+        text-align: center; /* Centrar también en móvil */
+        width: 100%; /* Ocupa todo el ancho disponible si se envuelve */
+        order: 3; /* Ordena el eslogan para que vaya debajo del logo y título en móvil */
+        margin-top: 5px; /* Pequeño margen superior */
+        text-shadow:
+            0 0 3px #00FFFF,
+            0 0 7px #00FFFF; /* Brillo más sutil en móvil */
     }
 
     header .logo .logo-icon {
@@ -601,7 +653,7 @@ footer {
     }
 
     header .logo .slogan {
-        font-size: 1em; /* Ajuste de eslogan para tablets */
+        font-size: 1.2em; /* Ajuste de eslogan para tablets */
     }
 
     header nav ul li a {

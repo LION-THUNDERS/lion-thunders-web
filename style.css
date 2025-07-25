@@ -109,6 +109,7 @@ header .logo h1 {
     color: #00FFFF;
     font-family: "Arial Black", Gadget, sans-serif;
     animation: lightningEffectText 2s infinite alternate;
+    white-space: nowrap; /* AHORA: Evita que el texto LION THUNDERS salte de línea */
 }
 
 /* ========================================================== */
@@ -116,43 +117,16 @@ header .logo h1 {
 /* ========================================================== */
 
 .main-nav {
-    width: 100%; /* Asegura que la navegación ocupe todo el ancho */
-    display: flex; /* Añadido para que el botón hamburguesa y el ul estén en la misma línea en mobile antes de apilarse */
-    justify-content: flex-end; /* Alinea los elementos a la derecha por defecto */
-    align-items: center; /* Alinea verticalmente */
+    width: auto; /* Ajustado para que el logo y el nav coexistan mejor en la misma fila */
+    display: flex;
+    justify-content: flex-end; /* Alinea los elementos a la derecha */
+    align-items: center;
+    flex-grow: 1; /* Permite que el main-nav ocupe el espacio restante */
 }
 
-.nav-links {
-    display: flex; /* Para la navegación horizontal en PC */
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    align-items: center; /* Alinea verticalmente los elementos del menú */
-}
-
-.nav-links li {
-    margin-left: 20px; /* Espacio entre los elementos del menú en PC */
-}
-
-.nav-links li:first-child {
-    margin-left: 0;
-}
-
-.nav-links li a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 15px;
-    display: block;
-}
-
-.nav-links li a:hover {
-    color: #00FFFF;
-    animation: lightningEffectHover 0.8s forwards;
-}
-
-/* ESTILOS PARA EL MENÚ HAMBURGUESA */
+/* ESTILOS PARA EL MENÚ HAMBURGUESA - SIEMPRE VISIBLE */
 .hamburger-menu {
-    display: none; /* Oculto por defecto en pantallas grandes */
+    display: flex; /* CAMBIO: Ahora siempre visible */
     flex-direction: column;
     justify-content: space-between;
     width: 30px;
@@ -161,7 +135,8 @@ header .logo h1 {
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 101; /* Asegura que esté por encima del menú desplegado */
+    z-index: 101;
+    margin-left: 20px; /* Espacio a la izquierda del botón */
 }
 
 .hamburger-menu .bar {
@@ -171,7 +146,6 @@ header .logo h1 {
     transition: 0.3s;
 }
 
-/* Estilos para el estado "abierto" del menú hamburguesa (opcional) */
 .hamburger-menu.open .bar:nth-child(1) {
     transform: rotate(-45deg) translate(-5px, 6px);
 }
@@ -183,6 +157,55 @@ header .logo h1 {
 .hamburger-menu.open .bar:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
 }
+
+/* ESTILOS PARA LOS ENLACES DE NAVEGACIÓN (SIEMPRE OCULTOS POR DEFECTO Y MANEJADOS POR JS) */
+.nav-links {
+    display: none; /* CAMBIO: Siempre oculto por CSS, JS lo mostrará/ocultará */
+    flex-direction: column; /* Apilar los enlaces verticalmente */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro para el menú desplegable */
+    position: absolute;
+    top: 50px; /* Ajustar según la altura de tu header */
+    right: 0;
+    width: 100%;
+    max-width: 280px; /* Ancho máximo para el menú desplegable */
+    height: auto;
+    text-align: center;
+    z-index: 99;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.nav-links.open {
+    display: flex; /* JS añade esta clase para mostrar el menú */
+}
+
+.nav-links li {
+    margin: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-links li:last-child {
+    border-bottom: none;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 20px; /* Más padding para los enlaces del menú desplegable */
+    display: block;
+    font-size: 1.1em;
+}
+
+.nav-links li a:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #00FFFF;
+    animation: lightningEffectHover 0.8s forwards;
+}
+
 
 /* Hero Section */
 .hero {
@@ -427,74 +450,32 @@ footer {
 /* MEDIA QUERIES PARA RESPONSIVE DESIGN                     */
 /* ========================================================== */
 
+/* Nota: Los estilos por defecto ya están configurados para la versión PC con menú hamburguesa.
+   Las Media Queries se usarán para ajustes específicos en pantallas más pequeñas. */
+
 /* Para pantallas más pequeñas (smartphones, hasta 768px) */
 @media (max-width: 768px) {
-    /* Header: Cambiar a columna en pantallas pequeñas */
+    /* Header: Ajustes para móviles */
     header .container {
-        flex-direction: row; /* Mantener logo y hamburguesa en fila */
-        justify-content: space-between; /* Espacio entre logo y hamburguesa */
-        align-items: center; /* Centra los elementos verticalmente */
-        padding: 10px 20px; /* Añade padding a los lados del contenedor del header */
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
     }
 
     header .logo h1 {
         font-size: 1.5em; /* Reducir tamaño de fuente del título LION THUNDERS */
+        white-space: normal; /* Permitir salto de línea si es necesario en móvil */
     }
 
     header .logo .logo-icon {
         height: 25px; /* Reducir tamaño del icono del logo */
     }
 
-    /* Navegación: Mostrar el menú hamburguesa y ocultar/mostrar el menú normal */
-    .hamburger-menu {
-        display: flex; /* Mostrar el botón hamburguesa */
-    }
-
-    .main-nav {
-        /* Para que la barra de navegación ocupe todo el ancho y el menú se posicione correctamente */
-        width: auto; /* Dejar que ocupe el espacio necesario en fila */
-        justify-content: flex-end; /* Alinea el botón hamburguesa a la derecha */
-        flex-grow: 1; /* Permite que el main-nav crezca para empujar el hamburguesa a la derecha */
-    }
-
+    /* Navegación: Ajustes para menú hamburguesa en móviles (no cambian mucho ya que ahora siempre está activo) */
     .nav-links {
-        display: none; /* Ocultar el menú normal por defecto */
-        flex-direction: column; /* Apilar los enlaces verticalmente */
-        background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro semitransparente para el menú desplegable */
-        position: absolute;
-        top: 50px; /* Ajustar según la altura de tu header. Si tu header es más alto, aumenta este valor */
-        right: 0; /* Alinear a la derecha */
-        width: 100%;
-        max-width: 250px; /* Limitar el ancho del menú desplegable en móviles */
-        height: auto;
-        text-align: center;
-        z-index: 99; /* Asegurar que esté por debajo del botón hamburguesa pero por encima del contenido */
-        border-radius: 0 0 5px 5px;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-        overflow: hidden; /* Para que los bordes redondeados se apliquen bien */
+        max-width: 250px; /* Un poco más estrecho en móviles */
     }
-
-    .nav-links.open {
-        display: flex; /* Mostrar el menú cuando la clase 'open' esté activa */
-    }
-
-    .nav-links li {
-        margin: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador para enlaces */
-    }
-    .nav-links li:last-child {
-        border-bottom: none; /* No hay separador en el último elemento */
-    }
-
-    .nav-links li a {
-        padding: 15px;
-        font-size: 1em;
-        transition: background-color 0.3s ease;
-    }
-    .nav-links li a:hover {
-        background-color: rgba(0, 0, 0, 0.5); /* Color de fondo al pasar el ratón en mobile */
-    }
-
 
     /* Hero Section: Ajustes de padding y tamaño de fuente */
     .hero {

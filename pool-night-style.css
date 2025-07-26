@@ -1,0 +1,390 @@
+/* ========================================================== */
+/* VARIABLES CSS para Pool Night NEON-PARTY */
+/* ========================================================== */
+:root {
+    --pool-primary-red: #FF0000; /* Rojo intenso */
+    --pool-secondary-black: #000000; /* Negro puro */
+    --pool-text-white: #FFFFFF; /* Blanco para textos */
+    --pool-bg-white: #FFFFFF; /* Fondo blanco */
+    --pool-button-hover-red: #CC0000; /* Rojo más oscuro para hover */
+}
+
+/* ========================================================== */
+/* ESTILOS GENERALES Y RESETEO para Pool Night */
+/* ========================================================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    background-color: var(--pool-bg-white); /* Fondo blanco por defecto */
+    color: var(--pool-secondary-black); /* Texto negro por defecto */
+    min-height: 100vh;
+    display: flex; /* Para footer pegado abajo si el contenido es corto */
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 2.5em;
+    color: var(--pool-primary-red); /* Títulos de sección en rojo */
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5); /* Sombra roja sutil */
+}
+
+/* ========================================================== */
+/* HEADER de Pool Night */
+/* ========================================================== */
+.pool-night-header {
+    background-color: var(--pool-secondary-black); /* Negro */
+    color: var(--pool-text-white); /* Blanco */
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.pool-night-header .event-title {
+    font-size: 3.5em;
+    color: var(--pool-primary-red); /* Rojo para el título principal */
+    margin: 0 0 10px 0;
+    font-family: 'Electrify', cursive, sans-serif; /* Usar la fuente Electrify */
+    text-shadow: 0 0 10px var(--pool-primary-red), 0 0 20px var(--pool-primary-red); /* Brillo neón rojo */
+}
+
+.pool-night-header .event-slogan {
+    font-size: 1.3em;
+    color: var(--pool-text-white);
+    margin-bottom: 20px;
+}
+
+.event-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.event-nav li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.event-nav a {
+    color: var(--pool-text-white);
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 8px 15px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.event-nav a:hover {
+    color: var(--pool-primary-red);
+    border-color: var(--pool-primary-red);
+    text-shadow: 0 0 5px var(--pool-primary-red);
+}
+
+.event-nav a.back-link {
+    background-color: var(--pool-primary-red);
+    color: var(--pool-text-white);
+    border-radius: 5px;
+}
+.event-nav a.back-link:hover {
+    background-color: var(--pool-button-hover-red);
+    border-color: var(--pool-button-hover-red);
+    text-shadow: none;
+}
+
+
+/* ========================================================== */
+/* HERO SECTION de Pool Night */
+/* ========================================================== */
+.event-hero {
+    background-image: url('images/neon-party-hero.jpg'); /* Necesitarás una imagen para esto */
+    background-size: cover;
+    background-position: center;
+    color: var(--pool-text-white);
+    text-align: center;
+    padding: 100px 20px;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content-pool-night {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente para legibilidad */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); /* Sombra roja intensa */
+}
+
+.hero-content-pool-night h2 {
+    font-size: 2.8em;
+    color: var(--pool-primary-red);
+    margin-bottom: 15px;
+    text-shadow: 0 0 8px var(--pool-primary-red);
+}
+
+.hero-content-pool-night p {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    color: var(--pool-text-white);
+}
+
+.cta-button-red {
+    display: inline-block;
+    background-color: var(--pool-primary-red);
+    color: var(--pool-text-white);
+    padding: 14px 28px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4);
+}
+
+.cta-button-red:hover {
+    background-color: var(--pool-button-hover-red);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(255, 0, 0, 0.6);
+}
+
+/* ========================================================== */
+/* DETALLES DEL EVENTO */
+/* ========================================================== */
+.event-details-section {
+    background-color: var(--pool-bg-white);
+    color: var(--pool-secondary-black);
+}
+
+.event-details-section h2 {
+    color: var(--pool-secondary-black); /* Título en negro */
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.detail-card {
+    background-color: #f0f0f0; /* Un gris claro para las tarjetas */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.detail-card h3 {
+    color: var(--pool-primary-red);
+    margin-top: 0;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.detail-card p {
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+/* ========================================================== */
+/* SECCIÓN DE TICKETS */
+/* ========================================================== */
+.tickets-section {
+    background-color: var(--pool-secondary-black);
+    color: var(--pool-text-white);
+}
+
+.tickets-section h2 {
+    color: var(--pool-primary-red);
+}
+
+.tickets-section p {
+    color: var(--pool-text-white);
+}
+
+.ticket-options {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.ticket-card {
+    background-color: #333; /* Un gris oscuro para las tarjetas de ticket */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); /* Sombra de neón rojo */
+    text-align: center;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ticket-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+}
+
+.ticket-card h3 {
+    color: var(--pool-primary-red);
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.ticket-card .price {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--pool-text-white);
+    margin-bottom: 15px;
+    text-shadow: 0 0 8px var(--pool-primary-red);
+}
+
+.ticket-card p {
+    font-size: 1em;
+    margin-bottom: 25px;
+    flex-grow: 1; /* Permite que el párrafo ocupe el espacio restante */
+}
+
+.buy-ticket-button {
+    display: inline-block;
+    background-color: var(--pool-primary-red);
+    color: var(--pool-text-white);
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 8px rgba(255, 0, 0, 0.4);
+}
+
+.buy-ticket-button:hover {
+    background-color: var(--pool-button-hover-red);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.6);
+}
+
+/* ========================================================== */
+/* GALERÍA de Pool Night */
+/* ========================================================== */
+.gallery-pool-night {
+    background-color: var(--pool-bg-white);
+    color: var(--pool-secondary-black);
+}
+
+.gallery-pool-night h2 {
+    color: var(--pool-secondary-black);
+}
+
+.gallery-grid-pool-night {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.gallery-grid-pool-night img {
+    width: 100%;
+    height: 250px; /* Altura fija para uniformidad */
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-grid-pool-night img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ========================================================== */
+/* FOOTER de Pool Night */
+/* ========================================================== */
+.pool-night-footer {
+    background-color: var(--pool-secondary-black);
+    color: var(--pool-text-white);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9em;
+    margin-top: auto; /* Empuja el footer hacia abajo */
+}
+
+
+/* ========================================================== */
+/* MEDIA QUERIES para Pool Night */
+/* ========================================================== */
+
+@media (max-width: 768px) {
+    .pool-night-header .event-title {
+        font-size: 2.5em;
+    }
+    .pool-night-header .event-slogan {
+        font-size: 1em;
+    }
+    .event-nav li {
+        margin: 0 8px;
+    }
+    .event-nav a {
+        font-size: 1em;
+        padding: 6px 10px;
+    }
+
+    .hero-content-pool-night {
+        padding: 20px;
+    }
+    .hero-content-pool-night h2 {
+        font-size: 2em;
+    }
+    .hero-content-pool-night p {
+        font-size: 1em;
+    }
+
+    .details-grid,
+    .gallery-grid-pool-night {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .ticket-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    .ticket-card {
+        width: 90%; /* Ocupa más ancho en móviles */
+    }
+    .ticket-card h3 {
+        font-size: 1.5em;
+    }
+    .ticket-card .price {
+        font-size: 2em;
+    }
+
+    .gallery-grid-pool-night img {
+        height: 200px;
+    }
+}

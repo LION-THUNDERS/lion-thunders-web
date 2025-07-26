@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 content.style.display = 'block'; // Mostrar el contenido
                 // Opcional: Remover la propiedad display: none después de un breve retraso
                 // para permitir animaciones de CSS en el contenido si las hubiera.
-                // setTimeout(() => { content.style.display = ''; }, 50); 
+                // setTimeout(() => { content.style.display = ''; }, 50);
             }, 500); // Coincide con la duración de la transición de opacidad del preloader
         }
     };
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Si la página ya está cargada (readyState === 'complete'), ejecutar la función inmediatamente.
     if (document.readyState === 'complete') {
         // Añadir un pequeño retraso para que el usuario pueda ver el preloader si la carga fue casi instantánea.
-        setTimeout(hidePreloader, 500); 
+        setTimeout(hidePreloader, 500);
     }
 
 
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // document.body.classList.toggle('no-scroll');
         });
 
-        // Cerrar el menú al hacer clic en un enlace (para experiencia móvil)
+        // Cerrar el menú al hacer clic en un enlace (para experiencia móvil y desktop con menú hamburguesa)
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburgerMenu.classList.remove('open');
@@ -59,12 +59,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // SCROLL SUAVE PARA ENLACES DE NAVEGACIÓN
-    // Aunque ya lo tienes en CSS con scroll-behavior: smooth, esta es una alternativa JS
-    // si el CSS no fuera suficiente o si quisieras añadir más lógica.
-    // En este caso, el CSS es suficiente y más performante.
-
-    // Destacar el enlace activo en la navegación (Opcional, pero mejora UX)
-    // Esto es un poco más avanzado y requeriría Intersection Observer para ser eficiente
-    // o un cálculo de scroll cada vez que el usuario se mueve.
-    // Por ahora, con el scroll suave es suficiente.
+    // Ya está activado por scroll-behavior: smooth en el CSS de html.
 });

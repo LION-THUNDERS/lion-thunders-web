@@ -283,6 +283,13 @@ header .logo .slogan {
     animation: lightningEffectHover 0.8s forwards; /* Mantiene tu animación */
 }
 
+/* Estilo especial para el enlace de la Pool Night - EFECTO ROJO */
+.nav-links li a.special-link:hover {
+    color: #FF0000; /* Rojo */
+    text-shadow: 0 0 5px #FF0000, 0 0 10px #FF0000; /* Sombra roja */
+}
+
+
 /* ========================================================== */
 /* SECCIÓN HERO (INICIO) */
 /* ========================================================== */
@@ -681,7 +688,7 @@ footer {
         display: flex; /* Asegura que el botón se muestra */
         position: absolute; /* Posicionar el botón de hamburguesa flotante */
         top: 15px; /* Ajuste de posición */
-        right: 20px; /* Ajuste de posición */
+        right: 35px; /* Lo movemos 15px más a la derecha para evitar superposición */
         z-index: 102; /* Más alto que nav-links */
     }
 
@@ -755,9 +762,8 @@ footer {
         font-size: 1.4em;
     }
 
-    /* Asegurar que el menú hamburguesa y el menú desplegable funcionen como se espera */
-    /* No se necesita un display: flex aquí para .nav-links porque ya está manejado por JS */
-    /* El .hamburger-menu ya es visible por defecto, no se necesita sobrescribir */
+    /* El menú hamburguesa y su despliegue ya están manejados por las reglas generales y JS */
+    /* No se necesitan sobrescribir para estas resoluciones */
 
     .hero h1 {
         font-size: 3.2em;

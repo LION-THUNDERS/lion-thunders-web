@@ -191,7 +191,7 @@ header .logo .slogan {
     margin-left: auto; /* Empuja el menú a la derecha */
 }
 
-/* MENÚ HAMBURGUESA */
+/* MENÚ HAMBURGUESA - SIEMPRE VISIBLE EN TODAS LAS PANTALLAS */
 .hamburger-menu {
     display: flex; /* Siempre visible */
     flex-direction: column;
@@ -227,33 +227,33 @@ header .logo .slogan {
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
-/* ENLACES DE NAVEGACIÓN (Controlados por JS) */
+/* ENLACES DE NAVEGACIÓN (Controlados por JS - Se desplegarán en todas las pantallas) */
 .nav-links {
-    display: none; /* Oculto por defecto */
+    display: none; /* Oculto por defecto, JS lo muestra/oculta */
     flex-direction: column;
     list-style: none;
     padding: 0;
     margin: 0;
     background-color: rgba(0, 0, 0, 0.95); /* Fondo más oscuro y opaco */
-    position: absolute;
+    position: absolute; /* Posicionamiento absoluto para el menú desplegable */
     top: 55px; /* Ajustar según la altura de tu header, para que baje un poco */
     right: 0;
     width: 100%;
-    max-width: 300px; /* Ancho máximo ligeramente mayor */
+    max-width: 300px; /* Ancho máximo ligeramente mayor para el menú desplegable */
     height: auto;
     text-align: center;
     z-index: 99;
     border-radius: 0 0 8px 8px; /* Bordes redondeados más suaves */
     box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3); /* Sombra con brillo cian */
     overflow: hidden;
-    transform-origin: top right; /* Punto de origen para futuras animaciones de menú */
+    transform-origin: top right; /* Punto de origen para animaciones del menú */
     opacity: 0; /* Opacidad inicial para transición */
     transform: scale(0.9); /* Tamaño inicial para transición */
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .nav-links.open {
-    display: flex;
+    display: flex; /* JS añade esta clase para mostrar el menú */
     opacity: 1;
     transform: scale(1);
 }
@@ -609,51 +609,6 @@ footer {
 /* MEDIA QUERIES PARA RESPONSIVE DESIGN */
 /* ========================================================== */
 
-/* Estilos para PC (min-width: 769px) */
-@media (min-width: 769px) {
-    /* Asegurar que el logo y el slogan se alinean bien en PC */
-    header .logo {
-        justify-content: flex-start; /* Alinea los elementos del logo a la izquierda */
-    }
-
-    /* Ocultar el menú hamburguesa en PC si prefieres la navegación normal aquí
-       pero como lo tienes siempre visible, lo mantengo así. */
-    .hamburger-menu {
-        display: none; /* Ocultar el botón hamburguesa en PC si usas enlaces normales */
-    }
-
-    .main-nav .nav-links {
-        display: flex; /* Mostrar los enlaces de navegación en línea para PC */
-        position: static; /* Quitar posicionamiento absoluto */
-        flex-direction: row; /* En fila */
-        background-color: transparent; /* Fondo transparente */
-        box-shadow: none; /* Sin sombra */
-        opacity: 1;
-        transform: none; /* Resetear transformaciones */
-        max-width: none; /* Eliminar max-width */
-        height: auto;
-        border-radius: 0;
-    }
-
-    .main-nav .nav-links li {
-        border-bottom: none; /* Eliminar borde inferior */
-        margin-left: 20px; /* Espacio entre enlaces */
-    }
-
-    .main-nav .nav-links li a {
-        padding: 10px 0; /* Padding ajustado para PC */
-        color: var(--text-light); /* Color de texto normal */
-        font-size: 1em;
-    }
-
-    .main-nav .nav-links li a:hover {
-        background-color: transparent; /* No hay fondo al pasar el mouse */
-        color: var(--primary-color); /* Solo cambio de color y sombra de texto */
-        text-shadow: 0 0 5px var(--primary-color);
-    }
-}
-
-
 /* Para pantallas más pequeñas (smartphones, hasta 768px) */
 @media (max-width: 768px) {
     .section {
@@ -800,10 +755,9 @@ footer {
         font-size: 1.4em;
     }
 
-    /* El menú de navegación se comporta como en PC, pero se asegura el espacio */
-    .main-nav .nav-links li {
-        margin-left: 15px;
-    }
+    /* Asegurar que el menú hamburguesa y el menú desplegable funcionen como se espera */
+    /* No se necesita un display: flex aquí para .nav-links porque ya está manejado por JS */
+    /* El .hamburger-menu ya es visible por defecto, no se necesita sobrescribir */
 
     .hero h1 {
         font-size: 3.2em;

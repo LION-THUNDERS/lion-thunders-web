@@ -1,41 +1,46 @@
 /* ========================================================== */
-/* IMPORTACIÓN DE FUENTES (PON ESTO AL PRINCIPIO DEL ARCHIVO) */
+/* VARIABLES CSS (Para facilitar la modificación de colores) */
+/* ========================================================== */
+:root {
+    --primary-color: #00FFFF; /* Azul Cian - Color principal de acento */
+    --secondary-color: #333; /* Gris Oscuro/Negro - Fondo del header/footer */
+    --text-dark: #333; /* Texto oscuro para fondos claros */
+    --text-light: #fff; /* Texto claro para fondos oscuros */
+    --bg-light: #fff; /* Fondo claro para secciones */
+    --bg-dark: #222; /* Fondo oscuro para secciones */
+    --button-hover: #00CCCC; /* Azul Cian más oscuro para hover de botón */
+}
+
+/* ========================================================== */
+/* IMPORTACIÓN DE FUENTES */
 /* ========================================================== */
 @font-face {
     font-family: 'Electrify'; /* Nombre que usaremos para referenciar la fuente */
-    src: url('fonts/Electrify.ttf') format('truetype'); /* Ajusta la ruta y el formato si tu archivo es diferente */
+    /* Se recomienda usar formatos .woff2 y .woff para mejor rendimiento web */
+    src: url('fonts/Electrify.woff2') format('woff2'),
+         url('fonts/Electrify.woff') format('woff'),
+         url('fonts/Electrify.ttf') format('truetype'); /* Fallback para navegadores antiguos */
     font-weight: normal;
     font-style: normal;
     font-display: swap; /* Permite que el texto sea visible mientras la fuente se carga */
 }
 
-/* Si tu fuente es WOFF/WOFF2 (preferible), se vería así: */
-/*
-@font-face {
-    font-family: 'Electrify';
-    src: url('fonts/Electrify.woff2') format('woff2'),
-         url('fonts/Electrify.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+/* ========================================================== */
+/* ESTILOS GENERALES Y RESETEO */
+/* ========================================================== */
+* {
+    box-sizing: border-box; /* Incluye padding y border en el ancho/alto total */
 }
-*/
-
-
-/* ========================================================== */
-/* ESTILOS GENERALES Y LAYOUT (TODO LO DEMÁS)               */
-/* ========================================================== */
 
 html {
     scroll-behavior: smooth; /* Para el scroll suave en toda la página */
 }
 
-/* Estilos generales */
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente más legible y moderna por defecto */
     margin: 0;
     line-height: 1.6;
-    color: #333;
+    color: var(--text-dark); /* Color de texto por defecto */
     min-height: 100vh; /* Asegura que el body ocupe al menos el 100% de la altura de la ventana */
 
     background-image: url('images/fondo1.jpg'); /* Tu imagen de fondo */
@@ -43,6 +48,7 @@ body {
     background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
+    -webkit-font-smoothing: antialiased; /* Suavizado de fuentes en WebKit */
 }
 
 .container {
@@ -52,129 +58,142 @@ body {
 }
 
 .section {
-    padding: 60px 0;
+    padding: 80px 0; /* Aumentar ligeramente el padding para más espacio */
     text-align: center;
 }
 
 .section h2 {
-    font-size: 2.5em;
-    color: #FFFFFF; /* Títulos de sección en blanco */
-    margin-bottom: 20px;
+    font-size: 2.8em; /* Un poco más grande para impactar */
+    color: var(--text-light); /* Títulos de sección en blanco por defecto (para fondo oscuro) */
+    margin-bottom: 25px;
     text-transform: uppercase;
+    letter-spacing: 2px; /* Espaciado entre letras para un efecto más moderno */
 }
 
 /* Estilo específico para el título de "Nuestros Servicios" */
 #servicios h2 {
-    color: #000000; /* Negro */
+    color: var(--text-dark); /* Negro para la sección de servicios con fondo blanco */
 }
 
+/* Clases de Fondo */
 .bg-light {
-    background-color: #fff;
-    border-radius: 10px; /* Bordes redondeados para el contenedor blanco */
-    padding: 40px; /* Espacio interior */
-    margin: 20px auto; /* Margen exterior para separarlo de los bordes de la pantalla, y auto para centrar */
-    box-sizing: border-box; /* Asegura que padding y border no aumenten el tamaño total */
+    background-color: var(--bg-light);
+    border-radius: 10px;
+    padding: 40px;
+    margin: 20px auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Sombra sutil para el contenedor blanco */
 }
 
 .bg-secondary {
-    background-color: #222; /* Negro */
-    color: #fff;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
 }
 
 .bg-secondary h2 {
-    color: #00FFFF; /* Título en azul cian para contraste en fondo oscuro */
+    color: var(--primary-color); /* Título en azul cian para contraste en fondo oscuro */
 }
 
+/* Botones CTA */
 .cta-button {
     display: inline-block;
-    background-color: #00FFFF; /* Azul Cian */
-    color: #333; /* Color oscuro para el texto del botón */
-    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+    padding: 14px 28px; /* Un poco más grande */
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transición suave */
+    box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4); /* Sombra que emana brillo */
 }
 
 .cta-button:hover {
-    background-color: #00CCCC; /* Tono más oscuro de azul cian para el hover del botón */
+    background-color: var(--button-hover);
+    transform: translateY(-3px); /* Efecto de "levantar" */
+    box-shadow: 0 6px 15px rgba(0, 255, 255, 0.6);
 }
 
 .centered {
     text-align: center;
 }
 
-/* Header */
+/* ========================================================== */
+/* HEADER */
+/* ========================================================== */
 header {
-    background-color: #333; /* Gris Oscuro/Negro */
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: var(--text-light);
     padding: 10px 0;
     position: fixed;
     width: 100%;
     z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra para el header fijo */
 }
 
 header .container {
     display: flex;
-    justify-content: space-between; /* Espacia los elementos: logo a la izq, nav a la der */
+    justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap; /* Permitir que el contenido del header se ajuste en pantallas pequeñas */
 }
 
 header .logo {
-    display: flex; /* Para alinear imagen, H1 y slogan horizontalmente */
-    align-items: center; /* Para alinear verticalmente en el centro */
-    flex-wrap: nowrap; /* Evita que los elementos del logo salten de línea por defecto en PC */
-    gap: 10px; /* Espacio entre el logo, el título y el eslogan */
-    flex-grow: 1; /* Permite que este contenedor crezca y ocupe el espacio disponible */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1; /* Permite que este contenedor crezca */
+    min-width: 0; /* Necesario para que flex-wrap funcione bien con flex-grow */
 }
 
 header .logo .logo-icon {
-    height: 30px; /* Ajusta el tamaño del logo como desees */
-    animation: lightningEffectImage 2s infinite alternate; /* Mantiene la animación original */
+    height: 35px; /* Ligeramente más grande */
+    animation: lightningEffectImage 2s infinite alternate;
 }
 
 header .logo h1 {
-    margin: 0; /* Reiniciamos el margen */
-    font-size: 2em;
-    color: #00FFFF;
+    margin: 0;
+    font-size: 2.2em; /* Ajuste del tamaño para PC */
+    color: var(--primary-color);
     font-family: "Arial Black", Gadget, sans-serif;
-    white-space: nowrap; /* Evita que el texto LION THUNDERS salte de línea */
-    animation: lightningEffectText 2s infinite alternate; /* Mantiene la animación original */
+    white-space: nowrap;
+    animation: lightningEffectText 2s infinite alternate;
+    text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color); /* Brillo sutil */
 }
 
-/* Estilos para el eslogan - APLICADO AHORA A TRAVÉS DE MEDIA QUERY PARA PC */
 header .logo .slogan {
-    color: #fff; /* Color base del texto */
-    font-size: 1.5em; /* Tamaño más grande para PC */
-    font-family: 'Electrify', sans-serif; /* Usamos la nueva fuente, fallback a sans-serif */
-    margin: 0; /* Reiniciar márgenes */
-    white-space: nowrap; /* Evita que el eslogan salte de línea en PC */
+    color: var(--text-light);
+    font-size: 1.6em; /* Tamaño más grande para PC */
+    font-family: 'Electrify', cursive, sans-serif; /* Añadido 'cursive' como fallback */
+    margin: 0 15px; /* Margen horizontal para separarlo del logo/h1 y el menú */
+    white-space: nowrap;
     text-shadow:
-        0 0 5px #00FFFF,   /* Brillo interior */
-        0 0 10px #00FFFF,  /* Brillo medio */
-        0 0 15px #00FFFF,  /* Brillo exterior */
-        0 0 20px #00FFFF;  /* Halo más amplio */
-    animation: simpleElectricPulse 2s infinite alternate; /* Animación de pulsación sutil */
-    line-height: 1.2; /* Ajuste para la altura de línea si es necesario */
-    flex-grow: 1; /* Permite que el slogan ocupe el espacio para centrarse */
-    text-align: center; /* Centra el texto del slogan dentro de su espacio */
+        0 0 8px var(--primary-color),
+        0 0 15px var(--primary-color),
+        0 0 25px var(--primary-color),
+        0 0 40px var(--primary-color); /* Halo más amplio y brillante */
+    animation: simpleElectricPulse 2s infinite alternate;
+    line-height: 1.2;
+    flex-grow: 2; /* Mayor crecimiento para el slogan para centrarlo más */
+    text-align: center;
+    /* transition: all 0.3s ease; No es necesario si la animación maneja el brillo */
 }
+
 
 /* ========================================================== */
-/* ESTILOS PARA LA NAVEGACIÓN (PC Y MOBILE)                */
+/* NAVEGACIÓN (PC Y MOBILE) */
 /* ========================================================== */
 
 .main-nav {
     width: auto;
     display: flex;
-    justify-content: flex-end; /* Alinea el menú hamburguesa a la derecha */
+    justify-content: flex-end;
     align-items: center;
-    /* flex-grow: 1;  Quitamos esto de aquí para que .logo tenga más espacio para centrar */
+    margin-left: auto; /* Empuja el menú a la derecha */
 }
 
-/* ESTILOS PARA EL MENÚ HAMBURGUESA - SIEMPRE VISIBLE */
+/* MENÚ HAMBURGUESA */
 .hamburger-menu {
-    display: flex; /* Ahora siempre visible */
+    display: flex; /* Siempre visible */
     flex-direction: column;
     justify-content: space-between;
     width: 30px;
@@ -184,14 +203,16 @@ header .logo .slogan {
     cursor: pointer;
     padding: 0;
     z-index: 101;
-    margin-left: 20px; /* Espacio a la izquierda del botón */
+    margin-left: 20px;
+    transition: transform 0.3s ease;
 }
 
 .hamburger-menu .bar {
     width: 100%;
     height: 3px;
-    background-color: #fff;
-    transition: 0.3s;
+    background-color: var(--primary-color); /* Barras en color cian */
+    border-radius: 2px;
+    transition: 0.3s ease;
 }
 
 .hamburger-menu.open .bar:nth-child(1) {
@@ -206,34 +227,40 @@ header .logo .slogan {
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
-/* ESTILOS PARA LOS ENLACES DE NAVEGACIÓN (SIEMPRE OCULTOS POR DEFECTO Y MANEJADOS POR JS) */
+/* ENLACES DE NAVEGACIÓN (Controlados por JS) */
 .nav-links {
-    display: none; /* Siempre oculto por CSS, JS lo mostrará/ocultará */
+    display: none; /* Oculto por defecto */
     flex-direction: column;
     list-style: none;
     padding: 0;
     margin: 0;
-    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro para el menú desplegable */
+    background-color: rgba(0, 0, 0, 0.95); /* Fondo más oscuro y opaco */
     position: absolute;
-    top: 50px; /* Ajustar según la altura de tu header */
+    top: 55px; /* Ajustar según la altura de tu header, para que baje un poco */
     right: 0;
     width: 100%;
-    max-width: 280px; /* Ancho máximo para el menú desplegable */
+    max-width: 300px; /* Ancho máximo ligeramente mayor */
     height: auto;
     text-align: center;
     z-index: 99;
-    border-radius: 0 0 5px 5px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 8px 8px; /* Bordes redondeados más suaves */
+    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3); /* Sombra con brillo cian */
     overflow: hidden;
+    transform-origin: top right; /* Punto de origen para futuras animaciones de menú */
+    opacity: 0; /* Opacidad inicial para transición */
+    transform: scale(0.9); /* Tamaño inicial para transición */
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .nav-links.open {
-    display: flex; /* JS añade esta clase para mostrar el menú */
+    display: flex;
+    opacity: 1;
+    transform: scale(1);
 }
 
 .nav-links li {
     margin: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Líneas divisorias más sutiles */
 }
 
 .nav-links li:last-child {
@@ -241,193 +268,255 @@ header .logo .slogan {
 }
 
 .nav-links li a {
-    color: #fff;
+    color: var(--text-light);
     text-decoration: none;
-    padding: 15px 20px; /* Más padding para los enlaces del menú desplegable */
+    padding: 15px 20px;
     display: block;
     font-size: 1.1em;
+    transition: background-color 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .nav-links li a:hover {
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #00FFFF;
-    animation: lightningEffectHover 0.8s forwards;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--primary-color);
+    text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color);
+    animation: lightningEffectHover 0.8s forwards; /* Mantiene tu animación */
 }
 
-
-/* Hero Section */
+/* ========================================================== */
+/* SECCIÓN HERO (INICIO) */
+/* ========================================================== */
 .hero {
-    background-image: url('images/hero-image.jpg'); /* Imagen de fondo de la sección principal */
+    background-image: url('images/hero-image.jpg');
     background-size: cover;
     background-position: center;
-    color: #fff;
+    color: var(--text-light);
     text-align: center;
     padding: 150px 0;
     padding-top: 200px; /* Ajuste para que el contenido no quede debajo del header fijo */
+    display: flex; /* Usar flexbox para centrar el contenido verticalmente */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    min-height: 80vh; /* Altura mínima para que siempre ocupe un buen espacio */
 }
 
 .hero .hero-content {
     max-width: 800px;
     margin: 0 auto;
+    padding: 0 20px; /* Asegurar padding en móviles */
 }
 
 .hero h1 {
-    font-size: 3em;
+    font-size: 3.8em; /* Más grande para el título principal */
     margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.5); /* Sombra brillante */
+    animation: lightningEffectText 3s infinite alternate; /* Ajustar duración si es necesario */
 }
 
 .hero p {
-    font-size: 1.2em;
+    font-size: 1.3em;
     margin-bottom: 30px;
+    max-width: 600px; /* Limitar ancho del párrafo para legibilidad */
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* Servicios */
+/* ========================================================== */
+/* SERVICIOS */
+/* ========================================================== */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Min-width ajustado */
     gap: 30px;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .service-card {
-    background-color: #00FFFF; /* Fondo de los cuadros de servicio en azul cian */
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: var(--primary-color);
+    padding: 25px; /* Más padding */
+    border-radius: 8px; /* Bordes más redondeados */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra más definida */
     text-align: left;
-    color: #333; /* Texto de los cuadros de servicio en gris oscuro para contraste */
+    color: var(--text-dark);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto hover */
+}
+
+.service-card:hover {
+    transform: translateY(-5px); /* Se levanta un poco */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Sombra más pronunciada */
 }
 
 .service-card h3 {
-    color: #333; /* Título de la tarjeta de servicio en gris oscuro */
+    color: var(--text-dark);
     margin-top: 0;
+    font-size: 1.4em;
+    margin-bottom: 10px;
 }
 
-/* Galería */
+.service-card p {
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+/* ========================================================== */
+/* GALERÍA */
+/* ========================================================== */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ajuste de min-width */
+    gap: 25px;
+    margin-top: 30px;
 }
 
 .gallery-grid img {
     width: 100%;
-    border-radius: 5px;
-    height: auto; /* Asegura que la altura se ajuste proporcionalmente */
-    display: block; /* Elimina posibles espacios extra debajo de la imagen */
+    border-radius: 8px;
+    height: 220px; /* Altura fija para que las imágenes se vean uniformes */
+    object-fit: cover; /* Recorta la imagen para que cubra el área sin distorsión */
+    display: block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Estilos para el texto en la sección "Galería de Eventos" */
+.gallery-grid img:hover {
+    transform: scale(1.03); /* Ligeramente más grande al pasar el mouse */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
 #galeria p {
-    color: #FFFFFF; /* Texto de la galería en blanco */
+    color: var(--text-light); /* Texto de la galería en blanco */
+    margin-top: 25px;
 }
 
-/* Contacto */
+/* ========================================================== */
+/* CONTACTO */
+/* ========================================================== */
 .contact-info {
-    margin-top: 20px;
+    margin-top: 30px;
     text-align: center;
 }
 
 .contact-info p {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 1.1em;
 }
 
-/* Estilos para el texto en la sección "Sobre Nosotros" */
+.contact-info p strong {
+    color: var(--primary-color);
+}
+
+.contact-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: var(--button-hover);
+    text-shadow: 0 0 5px var(--primary-color);
+}
+
+/* ========================================================== */
+/* SOBRE NOSOTROS */
+/* ========================================================== */
 #nosotros p {
-    color: #FFFFFF; /* Texto de "Sobre Nosotros" en blanco */
+    color: var(--text-light); /* Texto de "Sobre Nosotros" en blanco */
+    max-width: 800px; /* Limitar ancho para legibilidad */
+    margin: 0 auto;
+    font-size: 1.1em;
 }
 
-/* Footer */
+/* ========================================================== */
+/* FOOTER */
+/* ========================================================== */
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: var(--text-light);
     text-align: center;
-    padding: 20px 0;
-    position: relative;
-    bottom: 0;
+    padding: 25px 0;
     width: 100%;
+    font-size: 0.9em;
 }
 
-/* --- Animaciones --- */
+/* ========================================================== */
+/* ANIMACIONES */
+/* ========================================================== */
 
 /* Animación de Corriente para el texto del título principal (menos intenso) */
-/* Se mantiene para el H1 de LION THUNDERS */
 @keyframes lightningEffectText {
     0%, 100% {
-        text-shadow: 0 0 2px #00FFFF, 0 0 5px #00FFFF, 0 0 8px #00FFFF; /* Valores reducidos */
+        text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color), 0 0 15px var(--primary-color);
         opacity: 1;
     }
     25% {
-        text-shadow: 0 0 4px #00FFFF, 0 0 8px #00FFFF, 0 0 12px #00FFFF; /* Valores reducidos */
-        opacity: 0.95;
+        text-shadow: 0 0 8px var(--primary-color), 0 0 15px var(--primary-color), 0 0 25px var(--primary-color);
+        opacity: 0.9;
     }
     50% {
-        text-shadow: 0 0 2px #00FFFF, 0 0 5px #00FFFF, 0 0 8px #00FFFF; /* Valores reducidos */
+        text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color), 0 0 15px var(--primary-color);
         opacity: 1;
     }
     75% {
         text-shadow: none;
-        opacity: 0.8;
+        opacity: 0.85;
     }
 }
 
-/* Animación de Corriente para el logo (imagen) (menos intenso) */
-/* Se mantiene para el logo */
+/* Animación de Corriente para el logo (imagen) */
 @keyframes lightningEffectImage {
     0%, 100% {
-        filter: drop-shadow(0 0 2px #00FFFF) drop-shadow(0 0 5px #00FFFF) drop-shadow(0 0 8px #00FFFF); /* Valores reducidos */
+        filter: drop-shadow(0 0 5px var(--primary-color)) drop-shadow(0 0 10px var(--primary-color)) drop-shadow(0 0 15px var(--primary-color));
         opacity: 1;
     }
     25% {
-        filter: drop-shadow(0 0 4px #00FFFF) drop-shadow(0 0 8px #00FFFF) drop-shadow(0 0 12px #00FFFF); /* Valores reducidos */
-        opacity: 0.95;
+        filter: drop-shadow(0 0 8px var(--primary-color)) drop-shadow(0 0 15px var(--primary-color)) drop-shadow(0 0 25px var(--primary-color));
+        opacity: 0.9;
     }
     50% {
-        filter: drop-shadow(0 0 2px #00FFFF) drop-shadow(0 0 5px #00FFFF) drop-shadow(0 0 8px #00FFFF); /* Valores reducidos */
+        filter: drop-shadow(0 0 5px var(--primary-color)) drop-shadow(0 0 10px var(--primary-color)) drop-shadow(0 0 15px var(--primary-color));
         opacity: 1;
     }
     75% {
         filter: none;
-        opacity: 0.8;
+        opacity: 0.85;
     }
 }
 
 /* Animación de Corriente sutil para enlaces al pasar el mouse */
 @keyframes lightningEffectHover {
     0%, 100% {
-        text-shadow: 0 0 3px #00FFFF, 0 0 6px #00FFFF;
+        text-shadow: 0 0 3px var(--primary-color), 0 0 6px var(--primary-color);
         opacity: 1;
     }
     50% {
-        text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 15px #00FFFF;
+        text-shadow: 0 0 7px var(--primary-color), 0 0 14px var(--primary-color), 0 0 20px var(--primary-color);
         opacity: 0.9;
     }
 }
 
-/* ANIMACIÓN: Pulsación eléctrica sutil para el eslogan (repetido aquí para claridad, ya está arriba también) */
+/* ANIMACIÓN: Pulsación eléctrica sutil para el eslogan */
 @keyframes simpleElectricPulse {
     0%, 100% {
         text-shadow:
-            0 0 5px #00FFFF,
-            0 0 10px #00FFFF,
-            0 0 15px #00FFFF,
-            0 0 20px #00FFFF;
+            0 0 8px var(--primary-color),
+            0 0 15px var(--primary-color),
+            0 0 25px var(--primary-color),
+            0 0 40px var(--primary-color);
         opacity: 1;
     }
     50% {
         text-shadow:
-            0 0 3px #00FFFF,
-            0 0 7px #00FFFF,
-            0 0 12px #00FFFF,
-            0 0 17px #00FFFF;
-        opacity: 0.95; /* Ligeramente menos opaco para el efecto de parpadeo */
+            0 0 5px var(--primary-color),
+            0 0 10px var(--primary-color),
+            0 0 20px var(--primary-color),
+            0 0 30px var(--primary-color);
+        opacity: 0.95;
     }
 }
 
 
 /* ========================================================== */
-/* ESTILOS PARA EL PRELOADER                                 */
+/* ESTILOS PARA EL PRELOADER */
 /* ========================================================== */
 #preloader {
     position: fixed;
@@ -435,250 +524,310 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #222; /* Un fondo oscuro como tu header */
+    background-color: var(--bg-dark); /* Un fondo oscuro */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Asegura que esté por encima de todo */
-    flex-direction: column; /* Para alinear logo, texto y círculo verticalmente */
-    opacity: 1; /* Asegura que sea visible al principio */
-    transition: opacity 0.5s ease-out; /* Transición para desvanecerse */
+    z-index: 1000;
+    flex-direction: column;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
 }
 
 .preloader-logo {
     display: flex;
     align-items: center;
-    margin-bottom: 20px; /* Espacio entre logo/texto y el círculo */
+    margin-bottom: 20px;
 }
 
 .preloader-logo .logo-icon {
-    height: 40px; /* Un poco más grande que en el header */
+    height: 50px; /* Un poco más grande para el preloader */
     margin-right: 15px;
-    animation: lightningEffectImage 2s infinite alternate; /* Mantiene la animación del logo */
+    animation: lightningEffectImage 2s infinite alternate;
 }
 
 .preloader-logo h1 {
     margin: 0;
-    font-size: 2.5em;
-    color: #00FFFF;
+    font-size: 3em; /* Más grande en el preloader */
+    color: var(--primary-color);
     font-family: "Arial Black", Gadget, sans-serif;
-    animation: lightningEffectText 2s infinite alternate; /* Mantiene la animación del texto */
+    animation: lightningEffectText 2s infinite alternate;
 }
 
 .preloader-circle {
-    width: 80px;
-    height: 80px;
+    width: 90px; /* Tamaño ligeramente mayor */
+    height: 90px;
     border-radius: 50%;
-    border: 4px solid #00FFFF;
+    border: 5px solid var(--primary-color); /* Borde más grueso */
     border-top-color: transparent;
     animation: spin 1s linear infinite;
-    position: relative; /* Para poder posicionar el efecto eléctrico */
+    position: relative;
+    box-shadow: 0 0 15px var(--primary-color); /* Sombra para el círculo */
 }
 
-/* Efecto "eléctrico" con pseudo-elementos */
 .preloader-circle::before,
 .preloader-circle::after {
     content: '';
     position: absolute;
     border-radius: 50%;
     opacity: 0;
+    box-shadow: 0 0 10px var(--primary-color); /* Sombra para los efectos eléctricos */
 }
 
 .preloader-circle::before {
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    border: 3px solid #00FFFF;
+    top: -12px;
+    left: -12px;
+    right: -12px;
+    bottom: -12px;
+    border: 4px solid var(--primary-color);
     border-left-color: transparent;
     animation: pulse 1.5s linear infinite;
 }
 
 .preloader-circle::after {
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    border: 2px solid #00FFFF;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    border: 3px solid var(--primary-color);
     border-right-color: transparent;
     animation: pulse 2s linear infinite reverse;
 }
 
-/* Animación de rotación del círculo principal */
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
-/* Animación de pulsación para el efecto eléctrico */
 @keyframes pulse {
-    0%, 100% { opacity: 0; transform: scale(1); }
+    0%, 100% { opacity: 0; transform: scale(0.9); } /* Escala reducida para que parezca que emerge */
     50% { opacity: 1; transform: scale(1.1); }
 }
 
 
 /* ========================================================== */
-/* MEDIA QUERIES PARA RESPONSIVE DESIGN                     */
+/* MEDIA QUERIES PARA RESPONSIVE DESIGN */
 /* ========================================================== */
 
-/* Nota: Los estilos por defecto ya están configurados para la versión PC con menú hamburguesa.
-   Las Media Queries se usarán para ajustes específicos en pantallas más pequeñas. */
-
-/* Para pantallas más grandes (PC, desde 769px) */
+/* Estilos para PC (min-width: 769px) */
 @media (min-width: 769px) {
-    header .logo .slogan {
-        /* Ya configurado arriba, pero aquí aseguramos que se aplica */
-        font-size: 1.5em; /* Tamaño grande para PC */
+    /* Asegurar que el logo y el slogan se alinean bien en PC */
+    header .logo {
+        justify-content: flex-start; /* Alinea los elementos del logo a la izquierda */
     }
 
-    /* Ajuste para centrar el slogan en PC:
-       Como .logo tiene `flex-grow: 1`, el espacio restante se distribuye.
-       Si el `h1` y el `img` no crecen, el `span.slogan` tomará el espacio central.
-       `text-align: center` dentro del slogan lo centrará en ese espacio. */
+    /* Ocultar el menú hamburguesa en PC si prefieres la navegación normal aquí
+       pero como lo tienes siempre visible, lo mantengo así. */
+    .hamburger-menu {
+        display: none; /* Ocultar el botón hamburguesa en PC si usas enlaces normales */
+    }
+
+    .main-nav .nav-links {
+        display: flex; /* Mostrar los enlaces de navegación en línea para PC */
+        position: static; /* Quitar posicionamiento absoluto */
+        flex-direction: row; /* En fila */
+        background-color: transparent; /* Fondo transparente */
+        box-shadow: none; /* Sin sombra */
+        opacity: 1;
+        transform: none; /* Resetear transformaciones */
+        max-width: none; /* Eliminar max-width */
+        height: auto;
+        border-radius: 0;
+    }
+
+    .main-nav .nav-links li {
+        border-bottom: none; /* Eliminar borde inferior */
+        margin-left: 20px; /* Espacio entre enlaces */
+    }
+
+    .main-nav .nav-links li a {
+        padding: 10px 0; /* Padding ajustado para PC */
+        color: var(--text-light); /* Color de texto normal */
+        font-size: 1em;
+    }
+
+    .main-nav .nav-links li a:hover {
+        background-color: transparent; /* No hay fondo al pasar el mouse */
+        color: var(--primary-color); /* Solo cambio de color y sombra de texto */
+        text-shadow: 0 0 5px var(--primary-color);
+    }
 }
 
 
 /* Para pantallas más pequeñas (smartphones, hasta 768px) */
 @media (max-width: 768px) {
-    /* Header: Ajustes para móviles */
-    header .container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-    }
-
-    header .logo {
-        flex-wrap: wrap; /* Permitir que los elementos del logo salten de línea si es necesario en móvil */
-        justify-content: center; /* Centrar el logo y el slogan en móvil si saltan de línea */
-        text-align: center; /* Asegurar que el texto esté centrado si hay wrap */
-        gap: 5px; /* Reducir el espacio entre elementos del logo en móvil */
-        flex-grow: 0; /* No permitir que crezca tanto en móvil para no desbordar */
-    }
-
-    header .logo h1 {
-        font-size: 1.5em; /* Reducir tamaño de fuente del título LION THUNDERS */
-        white-space: normal; /* Permitir salto de línea si es necesario en móvil */
-    }
-
-    header .logo .slogan {
-        font-size: 0.9em; /* Ajustar el tamaño del eslogan en móvil */
-        white-space: normal; /* Permitir salto de línea si es necesario en móvil */
-        text-align: center; /* Centrar también en móvil */
-        width: 100%; /* Ocupa todo el ancho disponible si se envuelve */
-        order: 3; /* Ordena el eslogan para que vaya debajo del logo y título en móvil */
-        margin-top: 5px; /* Pequeño margen superior */
-        text-shadow:
-            0 0 3px #00FFFF,
-            0 0 7px #00FFFF; /* Brillo más sutil en móvil */
-    }
-
-    header .logo .logo-icon {
-        height: 25px; /* Reducir tamaño del icono del logo */
-        margin-right: 0; /* Quitar margen extra si hay wrap */
-    }
-
-    /* Navegación: Ajustes para menú hamburguesa en móviles (no cambian mucho ya que ahora siempre está activo) */
-    .nav-links {
-        max-width: 250px; /* Un poco más estrecho en móviles */
-    }
-
-    /* Hero Section: Ajustes de padding y tamaño de fuente */
-    .hero {
-        padding: 100px 20px; /* Reducir padding general en móviles */
-        padding-top: 150px; /* Asegurar que el contenido no quede debajo del header fijo */
-    }
-
-    .hero h1 {
-        font-size: 2.2em; /* Reducir tamaño del título principal */
-    }
-
-    .hero p {
-        font-size: 1em; /* Reducir tamaño del párrafo principal */
-        padding: 0 10px; /* Añadir padding horizontal para evitar que el texto toque los bordes */
-    }
-
-    /* Secciones generales: padding */
     .section {
-        padding: 40px 0; /* Reducir padding de las secciones */
+        padding: 60px 0; /* Ajustar padding de sección para móviles */
     }
 
     .section h2 {
-        font-size: 2em; /* Reducir tamaño de los títulos de sección */
-        padding: 0 10px; /* Evitar que el título toque los bordes */
+        font-size: 2.2em; /* Reducir tamaño de los títulos de sección */
+    }
+
+    .hero {
+        padding: 120px 20px; /* Ajustar padding de hero para móviles */
+        padding-top: 150px;
+        min-height: 70vh; /* Ajustar altura mínima */
+    }
+
+    .hero h1 {
+        font-size: 2.8em; /* Reducir tamaño del título principal */
+    }
+
+    .hero p {
+        font-size: 1.1em; /* Reducir tamaño del párrafo principal */
+    }
+
+    /* Header: Ajustes para móviles */
+    header .container {
+        flex-direction: column; /* Apilar elementos en columna */
+        align-items: flex-start; /* Alinear a la izquierda */
+        padding: 10px 15px; /* Más padding en los lados */
+    }
+
+    header .logo {
+        width: 100%; /* Ocupar todo el ancho disponible */
+        justify-content: center; /* Centrar logo y h1 */
+        margin-bottom: 10px; /* Espacio debajo del logo/h1 */
+        flex-grow: 0;
+    }
+
+    header .logo h1 {
+        font-size: 1.8em; /* Reducir tamaño de fuente del título LION THUNDERS */
+        white-space: normal; /* Permitir salto de línea */
+        text-align: center;
+    }
+
+    header .logo .slogan {
+        font-size: 1em; /* Ajustar el tamaño del eslogan en móvil */
+        white-space: normal;
+        text-align: center;
+        width: 100%; /* Ocupa todo el ancho disponible */
+        order: 3; /* Ordena el eslogan para que vaya debajo del logo y título en móvil */
+        margin: 5px 0 0 0; /* Ajustar márgenes */
+        text-shadow: 0 0 5px var(--primary-color); /* Brillo más sutil en móvil */
+    }
+
+    header .logo .logo-icon {
+        height: 30px; /* Reducir tamaño del icono del logo */
+        margin-right: 5px;
+    }
+
+    /* El menú hamburguesa ya está diseñado para aparecer en todas las pantallas.
+       Aquí se asegura que se posiciona correctamente. */
+    .main-nav {
+        width: 100%; /* Ocupa todo el ancho para centrar el botón */
+        justify-content: center; /* Centra el botón hamburguesa */
+        margin-left: 0;
+        order: 2; /* Para que el menú hamburguesa esté debajo del logo/slogan si el header es column */
+    }
+
+    .hamburger-menu {
+        display: flex; /* Asegura que el botón se muestra */
+        position: absolute; /* Posicionar el botón de hamburguesa flotante */
+        top: 15px; /* Ajuste de posición */
+        right: 20px; /* Ajuste de posición */
+        z-index: 102; /* Más alto que nav-links */
+    }
+
+    .nav-links {
+        top: 60px; /* Ajustar posición para que baje más en móvil */
+        width: calc(100% - 40px); /* Ancho completo menos padding */
+        left: 20px; /* Centrar visualmente */
+        right: 20px; /* Centrar visualmente */
+        max-width: unset; /* Permitir que ocupe el ancho disponible */
     }
 
     /* Contenedor blanco (bg-light): Ajustar margen y padding */
     .bg-light {
-        padding: 20px; /* Reducir padding interno */
-        margin: 10px; /* Reducir margen exterior */
+        padding: 25px;
+        margin: 15px;
     }
 
-    .bg-light p {
-        font-size: 0.9em; /* Reducir tamaño de fuente del texto en el fondo blanco */
-    }
-
-    /* Servicios Grid: Una columna para móviles */
-    .services-grid {
-        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
-        gap: 20px; /* Reducir el espacio entre las tarjetas */
-    }
-
-    /* Galería Grid: Una columna para móviles */
+    /* Servicios Grid y Galería Grid: Una columna para móviles */
+    .services-grid,
     .gallery-grid {
-        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
-        gap: 15px; /* Reducir el espacio entre las imágenes */
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 
-    /* Contacto */
-    .contact-info p {
-        font-size: 0.9em; /* Ajustar el tamaño de la fuente para el contacto en móviles */
+    .gallery-grid img {
+        height: 180px; /* Altura más pequeña para móviles */
     }
 
     /* Footer: Ajustes de padding */
     footer {
-        padding: 15px 0; /* Reducir padding del footer */
-        font-size: 0.8em; /* Reducir tamaño de fuente del footer */
+        padding: 20px 0;
+        font-size: 0.85em;
+    }
+
+    /* Preloader en móvil */
+    .preloader-logo .logo-icon {
+        height: 35px;
+    }
+
+    .preloader-logo h1 {
+        font-size: 2em;
+    }
+
+    .preloader-circle {
+        width: 70px;
+        height: 70px;
+        border-width: 4px;
+    }
+
+    .preloader-circle::before {
+        border-width: 3px;
+        top: -8px; left: -8px; right: -8px; bottom: -8px;
+    }
+    .preloader-circle::after {
+        border-width: 2px;
+        top: 8px; left: 8px; right: 8px; bottom: 8px;
     }
 }
 
 /* Para tablets y pantallas medianas (entre 769px y 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
     .container {
-        padding: 0 30px; /* Aumentar ligeramente el padding lateral */
+        padding: 0 30px;
     }
 
     header .logo h1 {
-        font-size: 1.8em; /* Ajuste para tablets */
+        font-size: 2em;
     }
 
     header .logo .slogan {
-        font-size: 1.2em; /* Ajuste de eslogan para tablets */
+        font-size: 1.4em;
     }
 
-    header nav ul li a {
-        padding: 10px 12px; /* Ajuste de padding para enlaces */
+    /* El menú de navegación se comporta como en PC, pero se asegura el espacio */
+    .main-nav .nav-links li {
+        margin-left: 15px;
     }
 
     .hero h1 {
-        font-size: 2.5em; /* Ajuste para tablets */
+        font-size: 3.2em;
     }
 
     .hero p {
-        font-size: 1.1em; /* Ajuste para tablets */
+        font-size: 1.2em;
     }
 
     .section h2 {
-        font-size: 2.2em; /* Ajuste de títulos de sección */
+        font-size: 2.5em;
     }
 
     .services-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Mantener 2 columnas o más si el tamaño lo permite */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 25px;
     }
 
     .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Mantener 2-3 columnas o más */
-        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .gallery-grid img {
+        height: 200px; /* Ajuste para tablets */
     }
 }
